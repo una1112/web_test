@@ -492,8 +492,8 @@
           <div class="field"><label for="visitorSubject">聯絡主題</label><input id="visitorSubject" name="subject" type="text" placeholder="例如：合作邀約 / 工作機會" required maxlength="120" /></div>
           <div class="field"><label for="visitorMessage">訊息內容</label><textarea id="visitorMessage" name="message" placeholder="簡單說說你的想法或需求..." required maxlength="3000"></textarea></div>
           <div class="form-footer">
-            <button type="submit" class="btn btn-primary" id="sendButton">建立聯絡郵件 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-            <span class="form-hint">使用你的預設郵件程式開啟郵件草稿；本站不會儲存表單資料。</span>
+            <button type="submit" class="btn btn-primary" id="sendButton">送出訊息 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+            <span class="form-hint">送出後，資料會儲存至本站的資料庫，供網站管理者回覆。</span>
           </div>
           <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
@@ -597,6 +597,9 @@
 
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
+    const sendButton = document.getElementById('sendButton');
+    const SUPABASE_URL = 'https://kfjxwqgatcoticygmgca.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_KyPS7dS1wbRR03gXPrfGxw__WNqX-mI';
     if (CONTACT_EMAIL) {
       const emailLink = document.createElement('a');
       emailLink.href = `mailto:${CONTACT_EMAIL}`;
@@ -610,23 +613,30 @@
       const email = document.getElementById('visitorEmail').value.trim();
       const subject = document.getElementById('visitorSubject').value.trim();
       const message = document.getElementById('visitorMessage').value.trim();
-      const body = `姓名：${name}\n電子郵件：${email}\n\n${message}`;
-      if (CONTACT_EMAIL) {
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        formStatus.textContent = '已嘗試開啟預設郵件程式，請在郵件程式中確認並送出。';
-      } else {
-        const template = `收件人：（請填入王皓家的聯絡信箱）\n主旨：${subject}\n\n${body}`;
-        try {
-          await navigator.clipboard.writeText(template);
-          formStatus.textContent = '聯絡內容已複製。網站管理者尚未設定收件信箱，請先補上收件地址後再寄送。';
-        } catch {
-          const blob = new Blob([template], {type:'text/plain;charset=utf-8'});
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a'); link.href = url; link.download = '聯絡內容.txt';
-          document.body.append(link); link.click(); link.remove();
-          setTimeout(() => URL.revokeObjectURL(url), 2000);
-          formStatus.textContent = '已下載聯絡內容文字檔。網站管理者尚未設定收件信箱，請先補上收件地址後再寄送。';
-        }
+      if (!name || !email || !subject || !message) {
+        formStatus.textContent = '請填寫所有欄位。';
+        return;
+      }
+      sendButton.disabled = true;
+      formStatus.textContent = '訊息傳送中…';
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/contact_messages`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_PUBLISHABLE_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({name, email, subject, message})
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        contactForm.reset();
+        formStatus.textContent = '訊息已送出，謝謝你的聯絡！';
+      } catch (error) {
+        console.error('Contact form submission failed:', error);
+        formStatus.textContent = '送出失敗，請稍後再試。你的填寫內容仍保留在表單中。';
+      } finally {
+        sendButton.disabled = false;
       }
     });
     document.getElementById('year').textContent = String(new Date().getFullYear());
