@@ -16,6 +16,122 @@
 /* v2 銷售數據與營運儀表板 */
 .rank-row{display:flex;align-items:center;width:100%;gap:12px;border:0;background:transparent;padding:10px 2px;text-align:left;border-bottom:1px solid #edf2ed;cursor:pointer}.rank-row:hover{background:#f7fbf8}.rank-row:last-child{border-bottom:0}.rank-number{display:grid;place-items:center;flex:0 0 26px;height:26px;border-radius:8px;background:#eff5ef;color:#72917c;font-size:12px;font-weight:800}.rank-number.gold{background:#e4f2e8;color:#287856}.rank-detail{min-width:0;flex:1}.rank-line{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#415c4c;font-size:12px}.rank-line strong{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-row .progress{margin:7px 0 0;height:6px}.small-muted-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:17px;padding-top:12px;border-top:1px solid #edf2ed;font-size:11px;color:#8a9e90}.small-muted-row strong{color:#3c765b}.forecast-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:17px}.forecast-summary>div{border:1px solid #e6eee6;border-radius:11px;padding:18px 15px}.forecast-summary span,.mini-kpis span{display:block;color:#8b9c90;font-size:11px}.forecast-summary strong{display:block;font-size:29px;color:#28684e;letter-spacing:-.7px;margin-top:4px}.forecast-summary strong small{font-size:11px;color:#86998c}.source-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.source-box{border:1px solid #e3ece5;border-radius:12px;padding:17px;display:flex;align-items:flex-start;gap:12px;min-width:0;background:#fcfefc}.source-icon{background:#e8f4ec;color:#428666;border-radius:10px;padding:10px;display:grid;place-items:center}.source-body{min-width:0;flex:1}.source-body strong{font-size:13px}.source-body p{font-size:11px;color:#85978a;line-height:1.8;margin:6px 0 11px}.upload-label{cursor:pointer}.visually-hidden{position:absolute!important;width:1px;height:1px;opacity:0;overflow:hidden;clip-path:inset(50%)}.upload-preview{border:1px dashed #a0c6ad;border-radius:12px;background:#f7fcf8;margin-top:15px;padding:16px}.sales-filters{display:grid;grid-template-columns:1fr 1fr 1.25fr 1.35fr;gap:12px}.sales-filters .field,.sales-filters .select,.sales-filters .search{width:100%;min-width:0}.mini-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:19px 0 0}.mini-kpis>div{background:#f7faf7;padding:14px;border:1px solid #e7eee8;border-radius:11px}.mini-kpis strong{display:block;color:#295b43;font-size:20px;letter-spacing:-.5px;margin-top:5px}.section-caption{font-size:12px;color:#819a89}.split-dashboard{grid-template-columns:1.4fr 1fr}.split-dashboard .card{min-height:100%}
 @media(max-width:1260px){.sales-filters{grid-template-columns:repeat(2,1fr)}.source-options{grid-template-columns:1fr}}@media(max-width:720px){.sales-filters{grid-template-columns:1fr}.source-options{grid-template-columns:1fr}.mini-kpis{grid-template-columns:repeat(2,1fr)}.mini-kpis strong{font-size:16px}.forecast-summary strong{font-size:22px}.rank-line{gap:5px}.rank-line strong{font-size:11px}.source-box{padding:12px}.card-title{align-items:flex-start;flex-wrap:wrap}.small-muted-row{flex-wrap:wrap}}
+
+/* v4 手機版專用：所有改動均位於斷點內，桌機樣式維持原狀 */
+@media (max-width:1000px) {
+  .split-dashboard { grid-template-columns:minmax(0,1fr); }
+  .sidebar { width:min(278px,84vw); height:100dvh; max-height:100dvh; overflow-y:auto; overscroll-behavior:contain; padding-bottom:max(18px,env(safe-area-inset-bottom)); }
+  .workspace { min-width:0; }
+}
+@media (max-width:680px) {
+  html,body { width:100%; max-width:100%; overflow-x:clip; }
+  .shell,.workspace,.content { min-width:0; }
+  .content { padding:18px 14px 38px; }
+  .topbar { height:70px; padding:0 14px; }
+  .topbar .row-flex { min-width:0; }
+  .topbar .row-flex > div { min-width:0; }
+  .topbar h1 { font-size:18px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:calc(100vw - 155px); }
+  .crumb { font-size:11px; max-width:calc(100vw - 155px); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  .round-btn { width:42px;height:42px;flex:0 0 42px; }
+  .top-actions { gap:4px; }
+  .page-intro { gap:10px; margin-bottom:18px; }
+  .page-intro h2 { font-size:21px; }
+  .page-intro p { font-size:13px; line-height:1.7; }
+  .page-intro > .toolbar { width:100%; }
+  .page-intro > .toolbar .btn { flex:1 1 0; }
+  .page-intro > .chip { align-self:flex-start;white-space:normal;line-height:1.5; }
+  .split,.split-even,.split-dashboard,.source-options,.sales-filters { grid-template-columns:minmax(0,1fr); }
+  .grid4 { grid-template-columns:repeat(2,minmax(0,1fr));gap:11px; }
+  .stat { padding:15px;min-height:119px; }
+  .metric { font-size:clamp(22px,6.3vw,28px);letter-spacing:-0.9px;word-break:normal;overflow-wrap:anywhere; }
+  .stat-label { font-size:11.5px; }
+  .stat-note { font-size:10.5px;line-height:1.45; }
+  .stat-top { align-items:flex-start; }
+  .card { min-width:0; }
+  .card-pad { padding:18px 16px; }
+  .card-title { align-items:flex-start;flex-direction:column;gap:11px; }
+  .card-title h3 { font-size:15px; }
+  .card-title small { display:block;margin-top:3px;line-height:1.55;font-size:11.5px; }
+  .card-title > .segmented { align-self:flex-start; }
+  .segmented { max-width:100%;flex-wrap:wrap;gap:4px; }
+  .segment { padding:9px 12px;font-size:12px;min-height:38px; }
+  .split-dashboard .card { min-height:auto; }
+  .grid4 + .gap18,.split + .gap18,.split-even + .gap18 { height:14px; }
+  .chart-wrap { overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:5px; }
+  .chart-wrap svg { min-width:425px;width:100%;max-width:none; }
+  .legend { flex-wrap:wrap;gap:7px 13px; }
+  .rank-line { gap:8px; }
+  .rank-line strong { font-size:12.5px; }
+  .rank-number { flex-basis:28px;height:28px; }
+  .rank-row { min-height:58px; }
+  .mini-kpis,.forecast-summary,.status-panel { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .mini-kpis strong { font-size:clamp(16px,4.5vw,20px);overflow-wrap:anywhere; }
+  .forecast-summary>div { padding:14px 12px; }
+  .forecast-summary strong { font-size:23px; }
+  .source-box { padding:14px;gap:10px; }
+  .source-body .toolbar { align-items:stretch; }
+  .source-body .toolbar .btn,.source-body .toolbar .upload-label { white-space:normal;min-height:42px; }
+  .inventory-toolbar { align-items:stretch;flex-direction:column;gap:11px; }
+  .inventory-toolbar > .toolbar { width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto; }
+  .inventory-toolbar .search { width:100%;min-width:0; }
+  .inventory-toolbar > .btn { align-self:flex-start; }
+  .sales-filters .field,.sales-filters .select,.sales-filters .search,
+  .form-group .field,.form-group .select { width:100%;max-width:100%;min-width:0;font-size:16px; }
+  .form-grid { grid-template-columns:minmax(0,1fr); }
+  .forecast-input-title,.small-muted-row,.section-caption { line-height:1.7; }
+  .section-heading { font-size:16px; }
+  .banner { padding:13px 12px;gap:10px; }
+  .banner p { font-size:12px;line-height:1.65; }
+  .dialog { width:100%; max-width:100%;padding:19px 16px 16px;max-height:calc(100dvh - 24px);border-radius:15px; }
+  .shadow-cover { padding:12px;align-items:center; }
+  .dialog-head { gap:8px; }
+  .dialog h2 { font-size:17px;overflow-wrap:anywhere; }
+  .dialog-actions { flex-wrap:wrap; }
+  .dialog-actions .btn { min-height:42px; }
+  .two-metrics { grid-template-columns:repeat(2,minmax(0,1fr));gap:9px; }
+  .two-metrics div { padding:11px;min-width:0; }
+  .two-metrics strong { font-size:17px;overflow-wrap:anywhere; }
+  .toast { left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));font-size:12px; }
+  .notif-panel { top:68px;max-height:calc(100dvh - 80px);overflow:auto; }
+  .footer-note { line-height:1.7; }
+  .btn { min-height:40px; }
+  .action-link { min-height:30px; }
+  /* 長表格轉為手機卡片列，欄位名稱由 JavaScript 取用原表格標頭 */
+  .table-scroll { overflow:visible;width:100%;margin:0; }
+  .table-scroll table,.table-scroll tbody { display:block;width:100%;white-space:normal; }
+  .table-scroll thead { position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+  .table-scroll tbody tr { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;background:#fbfdfb;border:1px solid #e5eee7;border-radius:11px;padding:9px 12px;margin:0 0 10px; }
+  .table-scroll tbody tr:last-child { margin-bottom:0; }
+  .table-scroll td { min-width:0;padding:9px 0;border:0;display:flex;flex-direction:column;gap:4px;align-items:flex-start;justify-content:flex-start;text-align:left;white-space:normal;overflow-wrap:anywhere;font-size:12px; }
+  .table-scroll td::before { content:attr(data-label);display:block;color:#81958a;font-weight:600;font-size:10.5px;line-height:1.4; }
+  .table-scroll td:first-child,
+  .table-scroll td[data-label="商品名稱"],
+  .table-scroll td[data-label="品項"],
+  .table-scroll td[data-label="食材"],
+  .table-scroll td[data-label="食材名稱"] { grid-column:1/-1;border-bottom:1px solid #eaf0ea;margin-bottom:3px; }
+  .table-scroll td[data-label="商品名稱"] { order:-1; }
+  .table-scroll td[data-label="品項"] strong,
+  .table-scroll td[data-label="商品名稱"] strong,
+  .table-scroll td[data-label="食材"] strong,
+  .table-scroll td[data-label="食材名稱"] strong {font-size:14px;}
+  .table-scroll td.align-right { text-align:left;align-items:flex-start; }
+  .table-scroll td[colspan] { grid-column:1/-1;margin:0;border:0; }
+  .table-scroll td[colspan]::before { display:none; }
+  .table-scroll .row-label { width:100%; }
+  .table-scroll .action-link { font-size:12px; }
+}
+@media (max-width:359px) {
+  .grid4 { grid-template-columns:minmax(0,1fr); }
+  .stat { min-height:99px; }
+  .metric { font-size:28px; }
+  .stat-note { font-size:11px; }
+  .content { padding:15px 12px 30px; }
+  .card-pad { padding:15px 13px; }
+  .mini-kpis { grid-template-columns:minmax(0,1fr); }
+  .topbar h1,.crumb { max-width:calc(100vw - 142px); }
+  .segment { padding:8px 10px; }
+}
+
 </style>
 </head>
 <body>
@@ -184,10 +300,22 @@ function analytics(){let period=Number(state.period),series=seriesForDays(period
 <div class="grid4">${statCard('期間銷售金額',money(ts.revenue),'','依模擬單價與銷量加總','cart','')}${statCard('期間售出商品',format(ts.qty),'件','包含 18 款餐點與飲品','clipboard','blue')}${statCard('銷售商品種類',all.filter(x=>x.qty>0).length,'款','依目前虛構菜單','package','')}${statCard('示範預測誤差','約 4.8','%','僅為概念示意，非經驗證模型','activity','orange')}</div><div class="gap18"></div><div class="split"><section class="card card-pad"><div class="card-title"><div><h3>模擬實際銷售 vs. 假設預測</h3><small>${period===7?'每日':`每 ${period===30?'3':'10'} 天`}合併為一組</small></div><div class="legend"><span><i class="first"></i>實際（模擬）</span><span><i class="second"></i>預測（假設）</span></div></div>${lines(actual,prediction,series.map(x=>x.label))}</section><section class="card card-pad"><div class="card-title"><h3>管理重點與下一步</h3><span class="chip">規劃功能</span></div><div class="banner">${ic('sparkles')}<div><strong>從熱銷排行延伸到食材需求</strong><p>以銷量預測熱門餐點的可能需求，再換算食材用量，有助店長提前安排備料。</p></div></div><div class="mini-divider"></div><div class="small-highlight">${ic('check-circle','tiny')} 追蹤熱門餐點的售罄情形</div><div class="mini-divider"></div><div class="small-highlight">${ic('check-circle','tiny')} 比較預測量與實際售出量</div><div class="mini-divider"></div><div class="small-highlight">${ic('check-circle','tiny')} 若要估算耗損，仍須紀錄食材報廢量</div></section></div><div class="gap18"></div><div class="split-even"><section class="card card-pad"><div class="card-title"><h3>品項熱銷排行</h3><span class="chip">${period} 天銷售量</span></div>${rankList(topMenu(period),7)}</section><section class="card card-pad"><div class="card-title"><h3>正式導入後可量測的指標</h3></div><ul class="bullets"><li>預測誤差：預測銷售數量與實際銷量差距</li><li>缺貨率：熱門餐點提早售罄的頻率</li><li>耗損率：報廢食材占總使用量的比例</li><li>備料工時：每天盤點與人工估算所需時間</li></ul><div style="margin-top:16px"><button class="btn secondary small" data-action="analyticsExplain">${ic('info')} 查看指標說明</button></div></section></div>${foot()}`}
 function lines(a,b,labels){let W=640,H=244,left=42,right=14,top=23,bottom=31,max=Math.ceil(Math.max(1,...a,...b)*1.13/30)*30,w=W-left-right,h=H-top-bottom;let grid=[0,.25,.5,.75,1].map(fr=>{let y=top+h*(1-fr);return `<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e8f0e8" stroke-dasharray="3 5"/><text class="chart-tick" x="${left-8}" y="${y+4}" text-anchor="end">${Math.round(max*fr)}</text>`}).join('');const pt=arr=>arr.map((v,i)=>`${left+i*w/Math.max(1,arr.length-1)},${top+h-v/max*h}`).join(' ');return `<div class="chart-wrap"><svg role="img" aria-label="模擬銷售與預測比較圖" viewBox="0 0 ${W} ${H}">${grid}<polyline points="${pt(b)}" fill="none" stroke="#bbdcca" stroke-width="3" stroke-dasharray="6 5"/><polyline points="${pt(a)}" fill="none" stroke="#278061" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${a.map((v,i)=>`<circle cx="${left+i*w/Math.max(1,a.length-1)}" cy="${top+h-v/max*h}" r="3.7" fill="#278061" stroke="white" stroke-width="2"/>`).join('')}${labels.map((label,i)=>`<text class="chart-tick" text-anchor="middle" x="${left+i*w/Math.max(1,labels.length-1)}" y="${H-9}">${label}</text>`).join('')}</svg></div>`}
 function foot(){return `<div class="footer-note">SmartPrep © 互動式概念原型 · 全站為虛構餐廳及模擬數據 · 未連線真實 AI、POS 或資料庫</div>`}
-function render(){const nav=$('navigation');nav.innerHTML=PAGES.map(([id,n,ico])=>`<button class="nav-btn ${state.page===id?'active':''}" data-page="${id}">${ic(ico)}${n}</button>`).join('');$('pageTitle').textContent=PAGES.find(x=>x[0]===state.page)?.[1]||'營運總覽';$('crumb').textContent=$('pageTitle').textContent;$('currentDate').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'});$('pageContent').innerHTML=({overview,sales,forecast,inventory,analytics}[state.page]||overview)();$('notifyDot').style.display=state.notifsRead?'none':'block';$('sidebar').classList.toggle('open',state.sidebarOpen);$('mobileOverlay').classList.toggle('open',state.sidebarOpen);renderNotif()}
+
+function labelResponsiveTables(root){
+ if(!root)return;
+ root.querySelectorAll('.table-scroll table').forEach(table=>{
+  const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());
+  table.querySelectorAll('tbody tr').forEach(row=>{
+   [...row.children].forEach((cell,index)=>{
+    if(cell.tagName==='TD' && !cell.hasAttribute('colspan'))cell.dataset.label=labels[index]||'';
+   });
+  });
+ });
+}
+function render(){const nav=$('navigation');nav.innerHTML=PAGES.map(([id,n,ico])=>`<button class="nav-btn ${state.page===id?'active':''}" data-page="${id}">${ic(ico)}${n}</button>`).join('');$('pageTitle').textContent=PAGES.find(x=>x[0]===state.page)?.[1]||'營運總覽';$('crumb').textContent=$('pageTitle').textContent;$('currentDate').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'});$('pageContent').innerHTML=({overview,sales,forecast,inventory,analytics}[state.page]||overview)();$('notifyDot').style.display=state.notifsRead?'none':'block';$('sidebar').classList.toggle('open',state.sidebarOpen);$('mobileOverlay').classList.toggle('open',state.sidebarOpen);renderNotif();labelResponsiveTables($('pageContent'))}
 function goto(page){if(!PAGES.some(x=>x[0]===page))return;state.page=page;state.sidebarOpen=false;state.notificationOpen=false;render();window.scrollTo({top:0,behavior:'smooth'})}
 let toastTimeout;function toast(message){$('toastRoot').innerHTML=`<div class="toast">${ic('check-circle')}${safe(message)}</div>`;clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>$('toastRoot').innerHTML='',3500)}
-function modal(title,body,actions=''){state.notificationOpen=false;renderNotif();$('modalRoot').innerHTML=`<div class="shadow-cover" data-action="closeOnBackdrop"><div class="dialog" role="dialog" aria-modal="true" aria-label="${safe(title)}"><div class="dialog-head"><div><h2>${safe(title)}</h2><p>SmartPrep｜互動式概念原型</p></div><button class="close" data-action="closeModal" aria-label="關閉">${ic('x','tiny')}</button></div>${body}<div class="dialog-actions">${actions||`<button class="btn" data-action="closeModal">我知道了</button>`}</div></div></div>`}
+function modal(title,body,actions=''){state.notificationOpen=false;renderNotif();$('modalRoot').innerHTML=`<div class="shadow-cover" data-action="closeOnBackdrop"><div class="dialog" role="dialog" aria-modal="true" aria-label="${safe(title)}"><div class="dialog-head"><div><h2>${safe(title)}</h2><p>SmartPrep｜互動式概念原型</p></div><button class="close" data-action="closeModal" aria-label="關閉">${ic('x','tiny')}</button></div>${body}<div class="dialog-actions">${actions||`<button class="btn" data-action="closeModal">我知道了</button>`}</div></div></div>`;labelResponsiveTables($('modalRoot'))}
 function closeModal(){$('modalRoot').innerHTML=''}
 function guide(){modal('SmartPrep 示範導覽',`<div class="guide-steps">${[['營運總覽','切換 7／30 天趨勢，點熱門品項查看銷售詳情。'],['銷售數據管理','查詢指定日期、近 7／30 天的 18 款品項；模擬 POS 連接或上傳 CSV。'],['AI 智慧備料','切換日期與營業情境，檢視全部品項預測及食材缺口。'],['庫存管理','新增、編輯食材後回到預測頁，觀察補貨缺口變化。'],['數據分析','比較不同期間的模擬銷量與假設預測指標。']].map(([a,b],i)=>`<div class="guide-step"><div class="step-number">${i+1}</div><div><strong>${a}</strong><p>${b}</p></div></div>`).join('')}</div><div class="banner" style="margin-top:12px">${ic('info')}<div><strong>本版使用虛構資料</strong><p>所有 AI 與 POS 連接皆為操作模擬，非真實模型推論或資料同步。</p></div></div>`,`<button class="btn secondary" data-action="closeModal">關閉</button><button class="btn" data-action="startGuide">前往銷售管理 ${ic('arrow-right','tiny')}</button>`)}
 function settings(){modal('系統設定（Demo）',`<div class="form-grid"><div class="form-group"><label class="field-label">示範店家</label><input class="field" value="炙牛食堂" disabled></div><div class="form-group"><label class="field-label">商品數量</label><input class="field" value="${MENU.length} 款示範菜單" disabled></div><div class="form-group"><label class="field-label">銷售資料</label><input class="field" value="內建 100 天模擬資料" disabled></div><div class="form-group"><label class="field-label">POS 系統</label><input class="field" value="${state.posConnected?'模擬連線已啟用':'未連接'}" disabled></div></div><div class="banner" style="margin-top:18px">${ic('info')}<div><strong>成果發表概念版本</strong><p>正式產品需額外實作資料庫、權限管理、POS API、預測模型與資料驗證。</p></div></div>`)}
